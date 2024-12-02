@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    html {
+        font-size: 12px;
+    }
+
+    .rounded-set-1 {
+        border-radius: 0.25rem;
+    }
+
+    .rounded-set-2 {
+        border-radius: 0.5rem;
+    }
+
+    .rounded-set-3 {
+        border-radius: 1.5rem;
+    }
+
+    #root {
+        width: 375px;
+        height: 635px;
+        border: 0.5px solid;
+    }
+
+    #title {
+        font-size: 14px;
+        letter-spacing: 0.5rem
+    }
+
+    .fontSet-1 {
+        font-size: 12px;
+    }
+
+    .fontSet-2 {
+        font-size: 13px;
+    }
+</style>
+
+<body>
+    <div id="root" class="d-flex flex-column justify-content-between align-items-center">
+        <!-- Header -->
+        <img src="./src/assets/img/Header.png">
+
+        <div class="container h-100 d-flex flex-column justify-content-start" style="width: 285px;">
+            <span id="title" class="text-center mt-3 mb-3">穿搭照片</span>
+
+            <!-- 照片 -->
+            <div class="rounded-set-3 overflow-hidden">
+                <!-- 圖片框 -->
+                <img class="img-fluid" src="./src/assets/img/outfit.png">
+            </div>
+
+            <!-- 編輯選項 -->
+            <div id="iconBox" class="row mt-4">
+                <div class="col-3 d-flex flex-column align-items-center">
+                    <img src="./src/assets/img/Crop.png">
+                    <span class="fontSet-1">裁切</span>
+                </div>
+                <div class="col-3 d-flex flex-column align-items-center">
+                    <img src="./src/assets/img/Brigness.png">
+                    <span class="fontSet-1">亮度</span>
+                </div>
+                <div class="col-3 d-flex flex-column align-items-center">
+                    <img src="./src/assets/img/Substract.png">
+                    <span class="fontSet-1">對比</span>
+                </div>
+                <div class="col-3 d-flex flex-column align-items-center">
+                    <img src="./src/assets/img/saturation.png">
+                    <span class="fontSet-1">飽和度</span>
+                </div>
+            </div>
+
+            <!-- 取消、儲存 -->
+            <div class="d-flex justify-content-between mt-4">
+                <button class="btn btn-dark rounded-set-2">取消修改</button>
+                <button class="btn btn-dark rounded-set-2">儲存修改</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
