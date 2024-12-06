@@ -84,3 +84,22 @@ select{
     color: #555;
     pointer-events: none;
 }
+
+.sceneBox{
+    background-color: #cccccc;
+    height: 102px;
+    border-radius: 1.5rem;
+}
+
+.hashTag{
+    font-size: 13px;
+    background-color: #f2f2f2;
+    border-radius: 1.5rem;
+    /* border:0.5px solid transparent */
+}
+
+.description{
+    height: 147px;
+    background-color: #cccccc;
+    resize: none;
+}
