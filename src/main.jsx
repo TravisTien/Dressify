@@ -1,12 +1,53 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import AddTag_3 from './pages/AddTag_3'
-import AddTagClothset from './pages/AddTagClothset'
-import AddTagNew from './pages/AddTagNew'
-import AddDescription from './pages/AddDescription'
+
+import Image from './pages/Image'
+import ImgEdit from './pages/ImgEdit'
+import AddTag from './pages/AddTag'
+import AddTagCloset from './pages/AddTagCloset'
+import AddTagComment from './pages/AddTagComment'
+import OutfitDescription from './pages/OutfitDescription'
+import Outfit from './pages/Outfit'
+import OutfitEdit from './pages/OutfitEdit'
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path: "/Image",
+    element: <Image />
+  },
+  {
+    path: "/ImgEdit",
+    element: <ImgEdit />
+  },
+  {
+    path: "/AddTag",
+    element: <AddTag />
+  },
+  {
+    path: "/OutfitDescription",
+    element: <OutfitDescription />
+  },
+  {
+    path: "/OutfitEdit",
+    element: <OutfitEdit />
+  },
+  {
+    path: "/OutfitDescription",
+    element: <OutfitDescription />
+  },
+  {
+    path: "/AddTagCloset",
+    element: <AddTagCloset />
+  },
+]);
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <AddDescription />
-  </StrictMode>,
+    <RouterProvider router={router} />
+  </StrictMode>
 )

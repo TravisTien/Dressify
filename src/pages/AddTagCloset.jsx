@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-function AddTagClothset() {
+function AddTagCloset() {
     const [clothes, setClothes] = useState([])
     const [filter, setFilter] = useState([])
 
@@ -34,7 +34,7 @@ function AddTagClothset() {
     }
 
     return (
-        <div className=' d-flex flex-column align-items-center rounded-5 container' style={{ backgroundColor: '#ededed', border: '1px solid red', minHeight: '492px' }}>
+        <div className=' d-flex flex-column align-items-center rounded-5 container position-absolute bottom-0 end-0' style={{ width:'375px', backgroundColor: '#ededed', border: '1px solid red', height: '492px', overflowY: 'auto' }}>
             <div className='row'>
                 <p className='text-center fontSet-3 py-4'>標註衣服</p>
             </div>
@@ -80,4 +80,4 @@ function AddTagClothset() {
     )
 }
 
-export default AddTagClothset
+export default AddTagCloset
