@@ -9,6 +9,7 @@ import AddTagComment from './pages/AddTagComment'
 import OutfitDescription from './pages/OutfitDescription'
 import Outfit from './pages/Outfit'
 import OutfitEdit from './pages/OutfitEdit'
+import CanvasDemo from './pages/CanvasDemo'
 
 import {
   createBrowserRouter,
@@ -16,6 +17,10 @@ import {
 } from "react-router-dom";
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <CanvasDemo />
+  },
   {
     path: "/Image",
     element: <Image />
@@ -31,6 +36,10 @@ const router = createBrowserRouter([
   {
     path: "/OutfitDescription",
     element: <OutfitDescription />
+  },
+  {
+    path: "/Outfit",
+    element: <Outfit />
   },
   {
     path: "/OutfitEdit",

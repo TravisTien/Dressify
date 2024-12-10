@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 
-function AddTagCloset({ select }) {
+function AddTagCloset({ setIsSliderVisible, tagList, setTagListShow, selectID }) {
     const [clothes, setClothes] = useState([])
     const [filter, setFilter] = useState([])
 
@@ -35,7 +35,12 @@ function AddTagCloset({ select }) {
 
     // 選到的物件 title 放到 useState裡面
     function handleSelect() {
-        select(event.target.getAttribute('dataTitle'))
+        // 把單品名稱放到，你點擊的 tag list 中
+        tagList.current[selectID].content= event.target.getAttribute('dataTitle')
+        
+        // 把修改完的 array 放到 要渲染的
+        setTagListShow(tagList.current)
+        setIsSliderVisible(false);
     }
 
     return (

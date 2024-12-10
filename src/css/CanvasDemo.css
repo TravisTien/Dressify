@@ -1,0 +1,14 @@
+.App{
+    padding: 100px 16px;
+    background-color: var(--gray-200);
+    min-height: 100vh;
+    height: 100%;
+}
+
+#canvas {
+    border: 1px solid gray;
+}
+
+.lower-canvas {
+    position: initial !important;
+}

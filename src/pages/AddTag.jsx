@@ -3,14 +3,39 @@ import AddTagCloset from "./AddTagCloset";
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import React,{ useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function AddTag() {
-  const select = useRef(null);
-  const [tagList, setTagList] = React.useState('小狗狗');
-  const [boxes, setBosex] = React.useState([]);
   const [isSliderVisible, setIsSliderVisible] = useState(false);
+  const [selectID, setSelectID] = useState('')
+  const tagList = useRef([
+
+  ])
+
+  // 標籤 array
+  const [tagListShow, setTagListShow] = React.useState([
+    {
+      id: 0,
+      editID: "",
+      content: "",
+      x: 20,
+      y: 30
+    }
+  ]);
+
+  // 點擊新增標籤
+  function handleAddTag() {
+    let a = Math.floor(Math.random() * 200);
+    tagList.current = [ ...tagList.current, { id: (tagList.current.length), content: '_', x: a, y: a }];
+    setTagListShow(tagList.current);
+  }
+  // 進入標籤編輯
+  function handleTagEdit() {
+    // 選擇到的 id
+    setSelectID(event.target.id)
+    setIsSliderVisible(true)
+  }
 
   // 頁面跳轉
   let navigate = useNavigate();
@@ -21,15 +46,6 @@ function AddTag() {
     navigate("/OutfitDescription")
   }
 
-  function handleAddbox() {
-    setBosex([...boxes, { id: Date.now() }]);
-  }
-  
-  function hi(){
-    console.log('hi');
-  }
-
-
   return (<MyLayout>
     <div className="px-5 d-flex flex-column align-items-center" style={{ height: '505px' }}>
 
@@ -38,17 +54,22 @@ function AddTag() {
 
       {/* 圖片 */}
       <div className="rounded-set-3 overflow-hidden" style={{ position: 'relative' }}>
-        <img onClick={handleAddbox} className="img-fluid" src="./src/assets/img/outfit.png" />
+        <img onClick={handleAddTag} className="img-fluid" src="./src/assets/img/outfit.png" />
       </div>
 
       {/* Tag框 */}
-      {boxes.map((value) => {
-        return <div id={value.id} onClick={() => setIsSliderVisible(true)} style={{ width: 50, height: 50, backgroundColor: 'green', top: 0, left: 0 }} className='position-absolute'>{tagList}</div>
-      })}
+      {tagListShow.map(({content, id, x, y }, index) => (
+        content &&
+        <div id={id}
+          onClick={handleTagEdit}
+          style={{ top: x, left: y, width: 50, height: 50, backgroundColor: '#484594' }}
+          className='position-absolute'>{tagListShow[index].content}
+        </div>
+      ))}
 
       {/* 上滑視窗 */}
       <div style={{ height: '492px' }}>
-        {isSliderVisible && <AddTagCloset select={setTagList} />}
+        {isSliderVisible && <AddTagCloset tagList={tagList} setIsSliderVisible={setIsSliderVisible} setTagListShow={setTagListShow} selectID={selectID} />}
       </div>
 
       {/* 上下頁 */}
