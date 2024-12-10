@@ -1,6 +1,5 @@
 import MyLayout from '../layouts/MyLayout';
 import AddTagCloset from "./AddTagCloset";
-import Draggable from 'react-draggable';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,7 +27,7 @@ function AddTag() {
   // 點擊新增標籤
   function handleAddTag() {
     let a = Math.floor(Math.random() * 200);
-    tagList.current = [...tagList.current, { id: (tagList.current.length), content: 'test', x: a, y: a }];
+    tagList.current = [ ...tagList.current, { id: (tagList.current.length), content: '_', x: a, y: a }];
     setTagListShow(tagList.current);
   }
   // 進入標籤編輯
@@ -36,25 +35,6 @@ function AddTag() {
     // 選擇到的 id
     setSelectID(event.target.id)
     setIsSliderVisible(true)
-  }
-  function handleTagDelete() {
-    let sID = parseInt(event.target.parentElement.getAttribute('id'))
-    setTagListShow(tagListShow.splice(sID,1));
-    tagList.current = tagListShow
-
-    //  != () 
-    let bee = tagListShow.filter((val) => {
-      // console.log(val.id);
-      // console.log(typeof(val.id))
-      // console.log(tagListShow);
-      // console.log(event.target.parentElement.getAttribute('id'));
-      
-      // console.log('sid',sID);
-      // console.log('content',tagListShow[sID]);
-      // return val.id !== (event.target.parentElement.getAttribute('id'))
-    })
-
-    // console.log(tagListShow);
   }
 
   // 頁面跳轉
@@ -78,15 +58,13 @@ function AddTag() {
       </div>
 
       {/* Tag框 */}
-      {tagListShow.map(({ content, id, x, y }, index) => (
+      {tagListShow.map(({content, id, x, y }, index) => (
         content &&
-        <Draggable >
-          <div className='position-relative d-flex' style={{ width: '120px', height: '20px', backgroundColor: 'black' }} id={id} >{tagListShow[index].content}
-            <div style={{ width: '50px', height: '20px', backgroundColor: '#fd971f' }} onClick={handleTagDelete} ></div>
-            <div style={{ width: '100px', height: '20px', backgroundColor: '#8ad72b' }} ></div>
-            <div style={{ width: '50px', height: '20px', backgroundColor: '#4a4198' }} onClick={handleTagEdit} id={id} ></div>
-          </div>
-        </Draggable>
+        <div id={id}
+          onClick={handleTagEdit}
+          style={{ top: x, left: y, width: 50, height: 50, backgroundColor: '#484594' }}
+          className='position-absolute'>{tagListShow[index].content}
+        </div>
       ))}
 
       {/* 上滑視窗 */}

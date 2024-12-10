@@ -9,7 +9,9 @@ import AddTagComment from './pages/AddTagComment'
 import OutfitDescription from './pages/OutfitDescription'
 import Outfit from './pages/Outfit'
 import OutfitEdit from './pages/OutfitEdit'
-import CanvasDemo from './pages/CanvasDemo'
+
+// Demo區
+import ReactDraggable from './demo/ReactDraggable'
 
 import {
   createBrowserRouter,
@@ -19,7 +21,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <CanvasDemo />
+    element: <ReactDraggable />
   },
   {
     path: "/Image",
