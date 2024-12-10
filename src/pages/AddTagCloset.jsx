@@ -1,14 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/Main.css'
 
 // Swiper 的東東
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/Main.css'
 
-function AddTagCloset() {
+function AddTagCloset({ select }) {
     const [clothes, setClothes] = useState([])
     const [filter, setFilter] = useState([])
 
@@ -33,8 +33,13 @@ function AddTagCloset() {
         setFilter(val === 'ALL' ? [...clothes] : [result()]);
     }
 
+    // 選到的物件 title 放到 useState裡面
+    function handleSelect() {
+        select(event.target.getAttribute('dataTitle'))
+    }
+
     return (
-        <div className=' d-flex flex-column align-items-center rounded-5 container position-absolute bottom-0 end-0' style={{ width:'375px', backgroundColor: '#ededed', border: '1px solid red', height: '492px', overflowY: 'auto' }}>
+        <div className=' d-flex flex-column align-items-center rounded-5 container position-absolute bottom-0 end-0' style={{ width: '375px', backgroundColor: '#ededed', border: '1px solid red', height: '492px', overflowY: 'auto' }}>
             <div className='row'>
                 <p className='text-center fontSet-3 py-4'>標註衣服</p>
             </div>
@@ -52,9 +57,8 @@ function AddTagCloset() {
                 <span className='col'></span>
             </div>
 
-
             {/* 把每個類型的單品顯示出來 */}
-            {filter.map(({items, type}) => <div className='row w-100 px-4' key={type}>
+            {filter.map(({ items, type }) => <div className='row w-100 px-4' key={type}>
                 <p className='fontSet-2 text-end pe-5'>{type}</p>
                 <hr />
                 {/* 圖片 */}
@@ -69,7 +73,7 @@ function AddTagCloset() {
                     {items.map((value) => {
                         return (
                             <SwiperSlide style={{ width: '100%' }}>
-                                <img className='rounded-set-3' style={{ width: '100%' }} src={value.image} />
+                                <img onClick={handleSelect} dataTitle={value.title} className='rounded-set-3' style={{ width: '100%' }} src={value.image} />
                             </SwiperSlide>
                         )
                     })}
