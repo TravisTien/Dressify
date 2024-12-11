@@ -56,36 +56,38 @@ function AddTag() {
   }
 
   return (<MyLayout>
-    <div className="px-5 d-flex flex-column align-items-center" style={{ height: '505px' }}>
+    <div className="position-relative px-5 d-flex flex-column align-items-center" style={{ height: '505px' }}>
 
       {/* 當前狀態 */}
       <span className='text-center fontSet-3 my-3'>新增標註</span>
 
       {/* 圖片 */}
-      <div className="position- rounded-set-3 overflow-hidden" style={{ width: '300px', height: '395px' }}>
-        <img onClick={handleAddTag} className="img-fluid" src="./src/assets/img/outfit.png" />
+      <div className="rounded-set-3 overflow-hidden" style={{ width: '300px', height: '395px' }}>
+        <img onClick={handleAddTag} className="img-fluid" draggable="false" src="./src/assets/img/outfit.png" />
       </div>
 
       {/* Tag框 */}
-      <div className='position-absolute'>
-        {tagList.map (({ content, id }, index) => (
+      <div className='position-absolute ' style={{ height: 20 }}>
+        {tagList.map(({ content, id }, index) => (
           content &&
-          <Draggable defaultPosition={{ x: 100, y: 50 }} >
+          <Draggable bounds={{ top: 45, left: -85, right: 85, bottom: 410 }} defaultPosition={{ x: 0, y: 200 }} >
             {/* Tag組件 */}
-            <div className='position-relative d-flex' style={{ width: '120px', height: '20px', backgroundColor: 'black', color: 'white' }} >{tagList[index].content}
-              {/* 刪除按鈕 */}
-              <div onClick={handleTagDelete} style={{ width: '50px', height: '20px', backgroundColor: '#fd971f' }} id={id} ></div>
-              {/* 可以拖曳 */}
-              <div style={{ width: '100px', height: '20px', backgroundColor: '#8ad72b' }} ></div>
-              {/* 編輯按鈕 */}
-              <div onClick={handleTagEdit} style={{ width: '50px', height: '20px', backgroundColor: '#4a4198' }} id={id} ></div>
+            <div className='position-relative rounded-circle ' style={{ width: '20px', height: '20px', backgroundColor: '#5551ff', color: '#5551ff' }} >
+              <div className='position-absolute' style={{ top: 30, left:-55, border:'1px solid'}}>
+                {/* 刪除按鈕 */}
+                <div className='position-absolute rounded-circle' onClick={handleTagDelete} style={{ left:-10, top:-10, width: '20px', height: '20px', backgroundColor: '#f2f2f2'}} id={id}></div>
+                {/* 可以拖曳 */}
+                <div className='text-center' style={{ width: '130px', height: '30px', backgroundColor: '#8ad72b' }} >{tagList[index].content}</div>
+                {/* 編輯按鈕 */}
+                <div className='position-absolute' onClick={handleTagEdit} style={{ top:0, right:0, width: '30px', height: '30px', backgroundColor: '#4a4198' }} id={id} ></div>
+              </div>
             </div>
           </Draggable>
         ))}
       </div>
 
       {/* 上滑視窗 */}
-      <div style={{ height: '492px' }}>
+      <div>
         {isSliderVisible &&
           <AddTagControl tagList={tagList} setTagList={setTagList} setIsSliderVisible={setIsSliderVisible} selectID={selectID} />
         }
