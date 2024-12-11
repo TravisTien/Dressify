@@ -36,6 +36,14 @@ const router = createBrowserRouter([
     element: <AddTag />
   },
   {
+    path: "/AddTagCloset",
+    element: <AddTagCloset />
+  },
+  {
+    path: "/AddTagComment",
+    element: <AddTagComment />
+  },
+  {
     path: "/OutfitDescription",
     element: <OutfitDescription />
   },
@@ -50,10 +58,6 @@ const router = createBrowserRouter([
   {
     path: "/OutfitDescription",
     element: <OutfitDescription />
-  },
-  {
-    path: "/AddTagCloset",
-    element: <AddTagCloset />
   },
 ]);
 

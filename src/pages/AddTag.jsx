@@ -1,60 +1,49 @@
 import MyLayout from '../layouts/MyLayout';
 import AddTagCloset from "./AddTagCloset";
-import Draggable from 'react-draggable';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Draggable from 'react-draggable';
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 function AddTag() {
   const [isSliderVisible, setIsSliderVisible] = useState(false);
   const [selectID, setSelectID] = useState('')
-  const tagList = useRef([
-
-  ])
 
   // 標籤 array
-  const [tagListShow, setTagListShow] = React.useState([
+  const [tagList, setTagList] = React.useState([
     {
       id: 0,
-      editID: "",
-      content: "",
-      x: 20,
-      y: 30
+      content: "_",
     }
   ]);
 
-  // 點擊新增標籤
+  // 新增標籤
   function handleAddTag() {
-    let a = Math.floor(Math.random() * 200);
-    tagList.current = [...tagList.current, { id: (tagList.current.length), content: 'test', x: a, y: a }];
-    setTagListShow(tagList.current);
+    setTagList( [...tagList, { id: (tagList.length), content: '_'}] );
   }
-  // 進入標籤編輯
+
+  // 編輯標籤
   function handleTagEdit() {
     // 選擇到的 id
-    setSelectID(event.target.id)
+    setSelectID((event.target.id))
+    // console.log(tagList);
+    
     setIsSliderVisible(true)
   }
+
+  // 刪除標籤
   function handleTagDelete() {
-    let sID = parseInt(event.target.parentElement.getAttribute('id'))
-    setTagListShow(tagListShow.splice(sID,1));
-    tagList.current = tagListShow
+    // 你選擇的ID
+    let sID = parseInt(event.target.id)
 
-    //  != () 
-    let bee = tagListShow.filter((val) => {
-      // console.log(val.id);
-      // console.log(typeof(val.id))
-      // console.log(tagListShow);
-      // console.log(event.target.parentElement.getAttribute('id'));
-      
-      // console.log('sid',sID);
-      // console.log('content',tagListShow[sID]);
-      // return val.id !== (event.target.parentElement.getAttribute('id'))
-    })
-
-    // console.log(tagListShow);
+    // 排除你選擇的，其餘的返還
+    let newArray = tagList.filter( (val)=>{
+      console.log(val);
+      return val.id !==sID
+    } )
+    setTagList(newArray);
   }
 
   // 頁面跳轉
@@ -78,20 +67,24 @@ function AddTag() {
       </div>
 
       {/* Tag框 */}
-      {tagListShow.map(({ content, id, x, y }, index) => (
+      {tagList.map(({ content, id}, index) => (
         content &&
-        <Draggable >
-          <div className='position-relative d-flex' style={{ width: '120px', height: '20px', backgroundColor: 'black' }} id={id} >{tagListShow[index].content}
-            <div style={{ width: '50px', height: '20px', backgroundColor: '#fd971f' }} onClick={handleTagDelete} ></div>
+        <Draggable defaultPosition={{ x: 100, y: 50 }} >
+          {/* Tag組件 */}
+          <div className='position-relative d-flex' style={{ width: '120px', height: '20px', backgroundColor: 'black', color: 'white' }} >{tagList[index].content}
+            {/* 刪除按鈕 */}
+            <div onClick={handleTagDelete} style={{ width: '50px', height: '20px', backgroundColor: '#fd971f' }} id={id} ></div>
+            {/* 可以拖曳 */}
             <div style={{ width: '100px', height: '20px', backgroundColor: '#8ad72b' }} ></div>
-            <div style={{ width: '50px', height: '20px', backgroundColor: '#4a4198' }} onClick={handleTagEdit} id={id} ></div>
+            {/* 編輯按鈕 */}
+            <div onClick={handleTagEdit} style={{ width: '50px', height: '20px', backgroundColor: '#4a4198' }} id={id} ></div>
           </div>
         </Draggable>
       ))}
 
       {/* 上滑視窗 */}
       <div style={{ height: '492px' }}>
-        {isSliderVisible && <AddTagCloset tagList={tagList} setIsSliderVisible={setIsSliderVisible} setTagListShow={setTagListShow} selectID={selectID} />}
+        {isSliderVisible && <AddTagCloset tagList={tagList} setTagList={setTagList} setIsSliderVisible={setIsSliderVisible} selectID={selectID} />}
       </div>
 
       {/* 上下頁 */}
