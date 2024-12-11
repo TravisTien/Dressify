@@ -39,9 +39,26 @@ function AddTagCloset({ tagList, setTagList, setIsSliderVisible, selectID }) {
         setIsSliderVisible(false);
     }
 
+    // 畫面跳轉
+    function handleToComment() {
+        navigate("/AddTagComment")
+    }
+
     return (
-        <div className='d-flex flex-column align-items-center rounded-5 container'>
-            <div className='ps-3 w-100 mb-5'>
+        <div className=' d-flex flex-column align-items-center rounded-5 container position-absolute bottom-0 end-0' style={{ width: '375px', backgroundColor: '#ededed', border: '1px solid red', height: '492px', overflowY: 'auto' }}>
+            {/* title */}
+            <div className='row'>
+                <p className='text-center fontSet-3 py-4'>標註衣服</p>
+            </div>
+
+            {/* 切換按鈕 */}
+            <div className='px-4 w-100 d-flex fontSet-2 justify-content-between mb-2'>
+                <button className="DBTN-Select px-3 "> 從我的衣櫃</button>
+                <button onClick={handleToComment} className="DBTN px-3"> 新增標註</button>
+            </div>
+
+
+            <div className='ps-4 w-100 mb-5'>
                 <select className='col px-2' onChange={handle} >
                     <option value="ALL" defaultValue>顯示全部</option>
                     {clothes.map(({ type }) => <option key={type} value={type}>{type}</option>)}
@@ -71,6 +88,7 @@ function AddTagCloset({ tagList, setTagList, setIsSliderVisible, selectID }) {
                     })}
                 </Swiper>
             </div>)}
+
         </div>
     )
 }

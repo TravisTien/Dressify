@@ -1,5 +1,5 @@
 import MyLayout from '../layouts/MyLayout';
-import AddTagCloset from "./AddTagCloset";
+import AddTagControl from "./AddTagControl";
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -21,7 +21,7 @@ function AddTag() {
 
   // 新增標籤
   function handleAddTag() {
-    setTagList( [...tagList, { id: (tagList.length), content: '_'}] );
+    setTagList([...tagList, { id: (tagList.length), content: '_' }]);
   }
 
   // 編輯標籤
@@ -29,7 +29,7 @@ function AddTag() {
     // 選擇到的 id
     setSelectID((event.target.id))
     // console.log(tagList);
-    
+
     setIsSliderVisible(true)
   }
 
@@ -39,10 +39,10 @@ function AddTag() {
     let sID = parseInt(event.target.id)
 
     // 排除你選擇的，其餘的返還
-    let newArray = tagList.filter( (val)=>{
+    let newArray = tagList.filter((val) => {
       console.log(val);
-      return val.id !==sID
-    } )
+      return val.id !== sID
+    })
     setTagList(newArray);
   }
 
@@ -62,29 +62,33 @@ function AddTag() {
       <span className='text-center fontSet-3 my-3'>新增標註</span>
 
       {/* 圖片 */}
-      <div className="rounded-set-3 overflow-hidden" style={{ position: 'relative' }}>
+      <div className="position- rounded-set-3 overflow-hidden" style={{ width: '300px', height: '395px' }}>
         <img onClick={handleAddTag} className="img-fluid" src="./src/assets/img/outfit.png" />
       </div>
 
       {/* Tag框 */}
-      {tagList.map(({ content, id}, index) => (
-        content &&
-        <Draggable defaultPosition={{ x: 100, y: 50 }} >
-          {/* Tag組件 */}
-          <div className='position-relative d-flex' style={{ width: '120px', height: '20px', backgroundColor: 'black', color: 'white' }} >{tagList[index].content}
-            {/* 刪除按鈕 */}
-            <div onClick={handleTagDelete} style={{ width: '50px', height: '20px', backgroundColor: '#fd971f' }} id={id} ></div>
-            {/* 可以拖曳 */}
-            <div style={{ width: '100px', height: '20px', backgroundColor: '#8ad72b' }} ></div>
-            {/* 編輯按鈕 */}
-            <div onClick={handleTagEdit} style={{ width: '50px', height: '20px', backgroundColor: '#4a4198' }} id={id} ></div>
-          </div>
-        </Draggable>
-      ))}
+      <div className='position-absolute'>
+        {tagList.map (({ content, id }, index) => (
+          content &&
+          <Draggable defaultPosition={{ x: 100, y: 50 }} >
+            {/* Tag組件 */}
+            <div className='position-relative d-flex' style={{ width: '120px', height: '20px', backgroundColor: 'black', color: 'white' }} >{tagList[index].content}
+              {/* 刪除按鈕 */}
+              <div onClick={handleTagDelete} style={{ width: '50px', height: '20px', backgroundColor: '#fd971f' }} id={id} ></div>
+              {/* 可以拖曳 */}
+              <div style={{ width: '100px', height: '20px', backgroundColor: '#8ad72b' }} ></div>
+              {/* 編輯按鈕 */}
+              <div onClick={handleTagEdit} style={{ width: '50px', height: '20px', backgroundColor: '#4a4198' }} id={id} ></div>
+            </div>
+          </Draggable>
+        ))}
+      </div>
 
       {/* 上滑視窗 */}
       <div style={{ height: '492px' }}>
-        {isSliderVisible && <AddTagCloset tagList={tagList} setTagList={setTagList} setIsSliderVisible={setIsSliderVisible} selectID={selectID} />}
+        {isSliderVisible &&
+          <AddTagControl tagList={tagList} setTagList={setTagList} setIsSliderVisible={setIsSliderVisible} selectID={selectID} />
+        }
       </div>
 
       {/* 上下頁 */}
