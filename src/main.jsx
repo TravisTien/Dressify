@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
+import App from './App.jsx'
 import Image from './pages/Image'
 import ImgEdit from './pages/ImgEdit'
 import AddTag from './pages/AddTag'
@@ -12,6 +13,7 @@ import OutfitEdit from './pages/OutfitEdit'
 
 // Demo區
 import ReactDraggable from './demo/ReactDraggable'
+import CanvasDemo2 from './demo/CanvasDemo2.jsx'
 
 import {
   createBrowserRouter,
@@ -21,7 +23,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ReactDraggable />
+    element: <App />
   },
   {
     path: "/Image",

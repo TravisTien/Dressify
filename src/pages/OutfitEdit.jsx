@@ -21,9 +21,6 @@ function OutfitDescription() {
     }
 
     function handleDel(){
-        // 選到的id
-        // console.log(event.target.id);
-
         // 把選到的踢出陣列
         setSceneList( sceneList.filter( (val)=>{ return val !== event.target.id}) )
     }
