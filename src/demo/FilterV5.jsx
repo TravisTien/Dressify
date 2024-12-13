@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, Rect,  } from 'fabric'
 // 導入全部的 Fabric
-// import * as fabric from "fabric";
-import { fabric } from 'fabric';
-
-// import { log } from "fabric/fabric-impl";
+import * as fabric from "fabric";
 
 function FilterV5() {
     const canvasRef = useRef(null);

@@ -16,7 +16,7 @@ function Image() {
         navigate("/AddTag")
     }
     function handleImgEdit(){
-        navigate("/ImgEdit")
+        navigate("/ImgEditList")
     }
 
     return (
