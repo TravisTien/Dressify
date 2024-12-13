@@ -7,6 +7,7 @@ import ImgEditList from './pages/ImgEditList.jsx'
 import ImgEditBrightness from './pages/ImgEditBrightness.jsx'
 import ImgEditContrast from './pages/ImgEditContrast.jsx'
 import ImgEditSaturate from './pages/ImgEditSaturate.jsx'
+import ImgEditCrop from './pages/ImgEditCrop.jsx'
 
 
 import AddTag from './pages/AddTag'
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: "/Image",
     element: <Image />
+  },
+  {
+    path: "/ImgEditCrop",
+    element: <ImgEditCrop />
   },
   {
     path: "/ImgEditList",
