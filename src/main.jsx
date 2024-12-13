@@ -20,7 +20,8 @@ import OutfitEdit from './pages/OutfitEdit'
 // import ReactDraggable from './demo/ReactDraggable'
 // import CanvasDemo2 from './demo/CanvasDemo2.jsx'
 // import FilterV5 from "./demo/FilterV5.jsx";
-import FilterCss from "./demo/FilterCss.jsx";
+// import FilterCss from "./demo/FilterCss.jsx";
+import CropperDemo from "./demo/CropperDemo.jsx";
 
 import {
   createBrowserRouter,
@@ -30,7 +31,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <FilterCss />
+    element: <CropperDemo />
   },
   {
     path: "/Image",

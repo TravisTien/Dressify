@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
@@ -10,8 +10,10 @@ import MyLayoutHeader from '../layouts/MyLayoutHeader';
 import ImgEditBrightness from './ImgEditBrightness';
 import ImgEditSaturate from './ImgEditSaturate';
 import ImgEditContrast from './ImgEditContrast';
+import ImgEditCrop from './ImgEditCrop';
 
 function ImgEditList() {
+    const [imgSrcBefor, setImgSrcBefor] = useState(null)
     const [type, setType] = useState('list')
     let navigate = useNavigate();
 
@@ -20,11 +22,27 @@ function ImgEditList() {
     const [contrast, setContrast] = useState(100)
     const [saturate, setSaturate] = useState(100)
 
+    // 控制濾鏡
     const filterStyle = {
         filter: `brightness(${brightness}%)
                  contrast(${contrast}%)
                  saturate(${saturate}%)`
     }
+
+    // useEffect(async () => {
+    //     // 把圖片轉成 base64
+    //     // const response = await fetch('./src/assets/img/outfit.png');
+    //     // console.log(response);
+        
+    //     // const file = './src/assets/img/outfit.png'
+    //     // if (file) {
+    //     //     const reader = new FileReader();
+    //     //     reader.onload = () => {
+    //     //         console.log('成功');
+    //     //     }
+    //     //     reader.readAsDataURL(file)
+    //     // }
+    // },[])
 
     function handlePrev() {
         navigate(-1)
@@ -34,6 +52,9 @@ function ImgEditList() {
         let type = event.target.parentElement.id;
 
         switch (type) {
+            case 'Case':
+                setType(<ImgEditCrop setType={setType} brightness={brightness} setBrightness={setBrightness} />)
+                break;
             case 'Brightness':
                 setType(<ImgEditBrightness setType={setType} brightness={brightness} setBrightness={setBrightness} />)
                 break;
@@ -60,10 +81,10 @@ function ImgEditList() {
                 {/* 不等於 list 跳轉到各別頁面 */}
                 {type !== 'list' && type}
 
-                {/* 等於list 就顯示 */}
+                {/* 按鈕區 */}
                 {type == 'list' && <>
                     <div className="w-100 d-flex justify-content-between">
-                        <div onClick={handleEdit} className="d-flex flex-column align-items-center">
+                        <div onClick={handleEdit} id='Crop' className="d-flex flex-column align-items-center">
                             <img src="./src/assets/img/Crop.png" className='mb-2' />
                             <span className="fontSet-1">裁切</span>
                         </div>
