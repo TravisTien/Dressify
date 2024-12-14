@@ -1,43 +1,55 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-import { useNavigate } from 'react-router-dom';
+import MyLayoutHeader from '../layouts/MyLayoutHeader';
+import TravisContext from "../demo/TravisContext";
 
-function ImgEditBrightness({ setType, brightness, setBrightness}) {
-    const saveBrightness = useRef(brightness)
-    const [rangeValue, setRangeValue] = useState(brightness)
-    
+function ImgEditBrightness() {
     let navigate = useNavigate();
+    const { imageSrc, filterStyle, setBrightness, brightness, CroppedSrc } = useContext(TravisContext)
 
-    function handlePrev() {
-        console.log(saveBrightness);
-        
-        setBrightness(saveBrightness.current)
-        setType('list')
-    }
+    // 儲存上一動數值
+    const [originalValue, setOriginalValue] = useState(brightness)
 
     function handleChange() {
-        setRangeValue(event.target.value)
+        // 更改 Context 的數值
         setBrightness(event.target.value)
     }
-    function handleSave(){
-        setType('list')
+    function handleCancel() {
+        // 把數值回復成調整前
+        setBrightness(originalValue)
+        navigate("/ImgEditList")
+    }
+    function handleSave() {
+        // 儲存數值
+        setOriginalValue(brightness)
+        navigate("/ImgEditList")
     }
 
 
     return (<>
-        <div className='w-100'>
-            <input onChange={handleChange} className='w-100' type="range" min={50} max={150} value={rangeValue} />
-        </div>
-        <p>亮度</p>
+        <MyLayoutHeader>
+            <div className="d-flex flex-column align-items-center px-5" >
+                <span className='text-center fontSet-3 my-3'>調整亮度</span>
+                <div style={filterStyle} className="w-100 rounded-set-3 overflow-hidden mb-3">
+                    <img className="img-fluid" src={CroppedSrc || imageSrc} />
+                </div>
+                
+                {/* 拉桿 */}
+                <div className='w-100'>
+                    <input onChange={handleChange} className='w-100' type="range" min={50} max={150} value={brightness} />
+                </div>
 
-        {/* save/ cancel */}
-        <div className="w-100 d-flex justify-content-between mt-4">
-            <button className="btn btn-dark rounded-set-3" onClick={handlePrev}>取消修改</button>
-            <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
-        </div>
+                {/* save/ cancel */}
+                <div className="w-100 d-flex justify-content-between mt-4">
+                    <button className="btn btn-dark rounded-set-3" onClick={handleCancel}>取消修改</button>
+                    <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
+                </div>
+            </div>
+        </MyLayoutHeader>
     </>)
 }
 

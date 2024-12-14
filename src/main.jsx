@@ -1,7 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import App from './App.jsx'
 import Image from './pages/Image'
 import ImgEditList from './pages/ImgEditList.jsx'
 import ImgEditBrightness from './pages/ImgEditBrightness.jsx'
@@ -18,6 +17,10 @@ import Outfit from './pages/Outfit'
 import OutfitEdit from './pages/OutfitEdit'
 
 // Demo區
+import App from './App.jsx'
+import {TravisContextProvider} from './demo/TravisContext.jsx'
+import Shop from './demo/Shop.jsx'
+import Home from './demo/Home.jsx'
 // import ReactDraggable from './demo/ReactDraggable'
 // import CanvasDemo2 from './demo/CanvasDemo2.jsx'
 // import FilterV5 from "./demo/FilterV5.jsx";
@@ -32,35 +35,43 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <CropperDemo />
+    element: <TravisContextProvider> <App /> </TravisContextProvider>
+  },
+  {
+    path: "/Shop",
+    element: <TravisContextProvider> <Shop /> </TravisContextProvider>,
+  },
+  {
+    path: "/Home",
+    element: <TravisContextProvider> <Home /> </TravisContextProvider>,
   },
   {
     path: "/Image",
-    element: <Image />
-  },
-  {
-    path: "/ImgEditCrop",
-    element: <ImgEditCrop />
+    element: <TravisContextProvider><Image /></TravisContextProvider>
   },
   {
     path: "/ImgEditList",
-    element: <ImgEditList />
+    element: <TravisContextProvider><ImgEditList /></TravisContextProvider>
+  },
+  {
+    path: "/ImgEditCrop",
+    element: <TravisContextProvider><ImgEditCrop /></TravisContextProvider>
   },
   {
     path: "/ImgEditBrightness",
-    element: <ImgEditBrightness />
+    element: <TravisContextProvider><ImgEditBrightness /></TravisContextProvider>
   },
   {
     path: "/ImgEditContrast",
-    element: <ImgEditContrast />
+    element: <TravisContextProvider><ImgEditContrast /></TravisContextProvider>
   },
   {
     path: "/ImgEditSaturate",
-    element: <ImgEditSaturate />
+    element: <TravisContextProvider><ImgEditSaturate /></TravisContextProvider>
   },
   {
     path: "/AddTag",
-    element: <AddTag />
+    element: <TravisContextProvider><AddTag /></TravisContextProvider>
   },
   {
     path: "/AddTagCloset",
@@ -69,10 +80,6 @@ const router = createBrowserRouter([
   {
     path: "/AddTagComment",
     element: <AddTagComment />
-  },
-  {
-    path: "/OutfitDescription",
-    element: <OutfitDescription />
   },
   {
     path: "/Outfit",
@@ -84,7 +91,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/OutfitDescription",
-    element: <OutfitDescription />
+    element: <TravisContextProvider><OutfitDescription /></TravisContextProvider>
   },
 ]);
 

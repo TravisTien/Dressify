@@ -1,21 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
-import { useNavigate } from 'react-router-dom';
 
+import TravisContext from "../demo/TravisContext";
 import MyLayout from '../layouts/MyLayout';
 
 
 
 function Image() {
-    let navigate  = useNavigate();
+    const {imageSrc} = useContext(TravisContext)
+
+    let navigate = useNavigate();
 
     // 跳轉到下一頁
-    function handleNext(){
+    function handleNext() {
         navigate("/AddTag")
     }
-    function handleImgEdit(){
+    function handleImgEdit() {
         navigate("/ImgEditList")
     }
 
@@ -26,7 +29,7 @@ function Image() {
 
                 {/* 圖片框 */}
                 <div className="w-100 rounded-set-3 overflow-hidden" style={{ position: 'relative' }}>
-                    <img className="img-fluid" src="./src/assets/img/outfit.png" />
+                    <img className="img-fluid" src={imageSrc} />
 
                     {/* 按鈕 */}
                     <button className="DBTN-Purple rounded-set-3 d-flex" style={{ position: 'absolute', top: '1rem', left: '1rem' }} onClick={handleImgEdit}>

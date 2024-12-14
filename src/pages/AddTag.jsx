@@ -1,13 +1,17 @@
+import React, { useState, useRef, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
+import Draggable from 'react-draggable';
+
 import MyLayout from '../layouts/MyLayout';
 import AddTagControl from "./AddTagControl";
+import TravisContext from "../demo/TravisContext";
+
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Draggable from 'react-draggable';
-import React, { useState, useRef } from 'react'
-import { useNavigate } from 'react-router-dom';
 
 function AddTag() {
+  const {imageSrc} = useContext(TravisContext)
   const [isSliderVisible, setIsSliderVisible] = useState(false);
   const [selectID, setSelectID] = useState('')
 
@@ -63,7 +67,7 @@ function AddTag() {
 
       {/* 圖片 */}
       <div className="rounded-set-3 overflow-hidden" style={{ width: '300px', height: '395px' }}>
-        <img onClick={handleAddTag} className="img-fluid" draggable="false" src="./src/assets/img/outfit.png" />
+        <img onClick={handleAddTag} className="img-fluid" draggable="false" src={imageSrc} />
       </div>
 
       {/* Tag框 */}

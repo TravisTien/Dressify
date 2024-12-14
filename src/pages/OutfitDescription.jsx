@@ -1,11 +1,15 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Draggable from 'react-draggable';
+
 import MyLayout from '../layouts/MyLayout';
+import TravisContext from "../demo/TravisContext";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
 
 function OutfitDescription() {
+    const{imageSrc} = useContext(TravisContext)
     let navigate = useNavigate();
     const inputRef = useRef(null);
     const [sceneList, setSceneList] = useState(['上班', '逛街', '會議', '運動'])
@@ -50,7 +54,7 @@ function OutfitDescription() {
 
                 {/* 圖片 */}
                 <div className='m-auto mb-4' style={{ width: '205px' }}>
-                    <img className='w-100 rounded-5' src="./src/assets/img/picture1.jpg" />
+                    <img className='w-100 rounded-5' src={imageSrc} />
                 </div>
 
                 {/* 穿搭名稱 */}

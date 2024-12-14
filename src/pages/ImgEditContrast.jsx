@@ -1,47 +1,55 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-import { useNavigate } from 'react-router-dom';
+import MyLayoutHeader from '../layouts/MyLayoutHeader';
+import TravisContext from "../demo/TravisContext";
 
-function ImgEditContrast({ setType, contrast, setContrast}) {
-    
-    // 一開始帶進來的數值
-    let saveContrast = useRef(contrast)
-    // 給拉桿的值
-    const [rangeValue, setRangeValue] = useState(contrast)
-
+function ImgEditContrast() {
     let navigate = useNavigate();
+    const { imageSrc, filterStyle, setContrast, contrast, CroppedSrc } = useContext(TravisContext)
 
-    function handlePrev() {
-        // 取消的話，把數值調成原來的
-        setContrast(saveContrast.current);
-        setType('list')
-    }
+    // 儲存上一動數值
+    const [originalValue, setOriginalValue] = useState(contrast)
 
     function handleChange() {
-        // 調整對比度
+        // 更改 Context 的數值
         setContrast(event.target.value)
-        setRangeValue(event.target.value)
     }
-    
-    function handleSave (){
-        // 返回總表
-        setType('list')
+    function handleCancel() {
+        // 把數值回復成調整前
+        setContrast(originalValue)
+        navigate("/ImgEditList")
     }
+    function handleSave() {
+        // 儲存數值
+        setOriginalValue(contrast)
+        navigate("/ImgEditList")
+    }
+
 
     return (<>
-        <div className='w-100'>
-            <input onChange={handleChange} value={rangeValue} min={50} max={150} className='w-100' type="range" />
-        </div>
-        <p>對比</p>
+        <MyLayoutHeader>
+            <div className="d-flex flex-column align-items-center px-5" >
+                <span className='text-center fontSet-3 my-3'>調整對比度</span>
+                <div style={filterStyle} className="w-100 rounded-set-3 overflow-hidden mb-3">
+                    <img className="img-fluid" src={CroppedSrc || imageSrc} />
+                </div>
 
-        {/* save/ cancel */}
-        <div className="w-100 d-flex justify-content-between mt-4">
-            <button className="btn btn-dark rounded-set-3" onClick={handlePrev}>取消修改</button>
-            <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
-        </div>
+                {/* 拉桿 */}
+                <div className='w-100'>
+                    <input onChange={handleChange} className='w-100' type="range" min={50} max={150} value={contrast} />
+                </div>
+
+                {/* save/ cancel */}
+                <div className="w-100 d-flex justify-content-between mt-4">
+                    <button className="btn btn-dark rounded-set-3" onClick={handleCancel}>取消修改</button>
+                    <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
+                </div>
+            </div>
+        </MyLayoutHeader>
     </>)
 }
 

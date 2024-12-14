@@ -1,44 +1,55 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-import { useNavigate } from 'react-router-dom';
 import MyLayoutHeader from '../layouts/MyLayoutHeader';
+import TravisContext from "../demo/TravisContext";
 
-function ImgEditSaturate({ setType, saturate, setSaturate }) {
-    // 給拉桿的值
-    const [saturateValue, setSaturateValue] = useState(saturate)
-    // 原來的值
-    let saveSaturate = useRef(saturate)
-
+function ImgEditSaturate() {
     let navigate = useNavigate();
+    const { imageSrc, filterStyle, setSaturate, saturate, CroppedSrc } = useContext(TravisContext)
+
+    // 儲存上一動數值
+    const [originalValue, setOriginalValue] = useState(saturate)
 
     function handleChange() {
+        // 更改 Context 的數值
         setSaturate(event.target.value)
-        setSaturateValue(event.target.value)
     }
-
     function handleCancel() {
-        setSaturate(saveSaturate.current)
-        setType('list')
+        // 把數值回復成調整前
+        setSaturate(originalValue)
+        navigate("/ImgEditList")
+    }
+    function handleSave() {
+        // 儲存數值
+        setOriginalValue(saturate)
+        navigate("/ImgEditList")
     }
 
-    function handleSave() {
-        setType('list')
-    }
 
     return (<>
-        <div className='w-100'>
-            <input onChange={handleChange} value={saturateValue} min={0} max={200} className='w-100' type="range" />
-        </div>
-        <p>飽和度</p>
+        <MyLayoutHeader>
+            <div className="d-flex flex-column align-items-center px-5" >
+                <span className='text-center fontSet-3 my-3'>調整飽和度</span>
+                <div style={filterStyle} className="w-100 rounded-set-3 overflow-hidden mb-3">
+                    <img className="img-fluid" src={CroppedSrc || imageSrc} />
+                </div>
 
-        {/* save/ cancel */}
-        <div className="w-100 d-flex justify-content-between mt-4">
-            <button className="btn btn-dark rounded-set-3" onClick={handleCancel}>取消修改</button>
-            <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
-        </div>
+                {/* 拉桿 */}
+                <div className='w-100'>
+                    <input onChange={handleChange} className='w-100' type="range" min={50} max={150} value={saturate} />
+                </div>
+
+                {/* save/ cancel */}
+                <div className="w-100 d-flex justify-content-between mt-4">
+                    <button className="btn btn-dark rounded-set-3" onClick={handleCancel}>取消修改</button>
+                    <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
+                </div>
+            </div>
+        </MyLayoutHeader>
     </>)
 }
 
