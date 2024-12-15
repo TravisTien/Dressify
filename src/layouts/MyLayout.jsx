@@ -1,15 +1,17 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../css/Dressify.css'
 
-import Header from '../components/Header';
-import NavBar from '../components/NavBar';
+import MyNavigation from '../components/MyNavigation'
+import MyFooter from '../components/MyFooter'
+
 
 function MyLayout({ children }) {
     return (
-        <div className='position-relative' style={{ height:'635px', width:'375px', border:'1px solid #5551ff'}}>
-            <Header />
+        <div className='d-flex flex-column position-relative justify-content-between' style={{ height:'635px', width:'375px', border:'1px solid #5551ff'}}>
+            <MyNavigation />
                 {children}
-            <NavBar />
+            <MyFooter />
         </div>
     )
 }

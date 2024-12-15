@@ -5,8 +5,8 @@ import AddTagComment from "./AddTagComment";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-function AddTagControl({ tagList, setTagList, setIsSliderVisible, selectID }) {
-    const [control, setControl] = useState('R')
+function AddTagControl({ setIsSliderVisible, selectID }) {
+    const [control, setControl] = useState('L')
 
     function handleCloset() {
         setControl('L')
@@ -32,8 +32,8 @@ function AddTagControl({ tagList, setTagList, setIsSliderVisible, selectID }) {
             {/* 從衣櫃 or 新增標註 */}
             <div className='w-100' style={{ border: '2px solid #3e7dbb' }}>
                 {control == 'R' 
-                    ? <AddTagComment tagList={tagList} setTagList={setTagList} selectID={selectID} setIsSliderVisible={setIsSliderVisible} />
-                    : <AddTagCloset tagList={tagList} setTagList={setTagList} selectID={selectID} setIsSliderVisible={setIsSliderVisible} />
+                    ? <AddTagComment selectID={selectID} setIsSliderVisible={setIsSliderVisible} />
+                    : <AddTagCloset selectID={selectID} setIsSliderVisible={setIsSliderVisible} />
                 }
             </div>
         </div>

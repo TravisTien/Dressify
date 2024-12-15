@@ -15,17 +15,11 @@ import AddTagComment from './pages/AddTagComment'
 import OutfitDescription from './pages/OutfitDescription'
 import Outfit from './pages/Outfit'
 import OutfitEdit from './pages/OutfitEdit'
+import MyFooter from './components/MyFooter.jsx'
+import MyNavigation from './components/MyNavigation.jsx'
 
 // Demo區
-import App from './App.jsx'
-import {TravisContextProvider} from './demo/TravisContext.jsx'
-import Shop from './demo/Shop.jsx'
-import Home from './demo/Home.jsx'
-// import ReactDraggable from './demo/ReactDraggable'
-// import CanvasDemo2 from './demo/CanvasDemo2.jsx'
-// import FilterV5 from "./demo/FilterV5.jsx";
-// import FilterCss from "./demo/FilterCss.jsx";
-import CropperDemo from "./demo/CropperDemo.jsx";
+import {TravisContextProvider} from './contexts/TravisContext.jsx'
 
 import {
   createBrowserRouter,
@@ -35,15 +29,7 @@ import {
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <TravisContextProvider> <App /> </TravisContextProvider>
-  },
-  {
-    path: "/Shop",
-    element: <TravisContextProvider> <Shop /> </TravisContextProvider>,
-  },
-  {
-    path: "/Home",
-    element: <TravisContextProvider> <Home /> </TravisContextProvider>,
+    element: <MyNavigation />
   },
   {
     path: "/Image",
@@ -75,11 +61,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/AddTagCloset",
-    element: <AddTagCloset />
+    element: <TravisContextProvider><AddTagCloset /></TravisContextProvider>
   },
   {
     path: "/AddTagComment",
-    element: <AddTagComment />
+    element: <TravisContextProvider><AddTagComment /></TravisContextProvider>
   },
   {
     path: "/Outfit",

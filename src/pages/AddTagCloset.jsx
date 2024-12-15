@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-// Swiper 的東東
+// Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
+// 各別頁面
+import TravisContext from "../contexts/TravisContext";
 
-function AddTagCloset({ tagList, setTagList, setIsSliderVisible, selectID }) {
+
+function AddTagCloset({setIsSliderVisible, selectID }) {
+    const {tagList} = useContext(TravisContext)
     const [clothes, setClothes] = useState([])
     const [filter, setFilter] = useState([])
 
-    // API 取值
+    // API 拿衣櫃資料
     React.useEffect(() => {
         async function callAPI() {
             let response = await fetch("../../public/clothes.json");
@@ -34,7 +38,7 @@ function AddTagCloset({ tagList, setTagList, setIsSliderVisible, selectID }) {
     }
 
     // 選擇單品
-    function handleSelect() {
+    function handleSelect(event) {
         tagList[selectID].content = event.target.getAttribute('dataTitle');
         setIsSliderVisible(false);
     }

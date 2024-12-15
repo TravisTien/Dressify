@@ -10,7 +10,7 @@ import "cropperjs/dist/cropper.min.css";
 
 // 引入來源
 import MyLayoutHeader from '../layouts/MyLayoutHeader';
-import TravisContext from "../demo/TravisContext";
+import TravisContext from "../contexts/TravisContext";
 
 
 function ImgEditCrop() {

@@ -2,10 +2,9 @@ import React, { useState, useRef, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../css/Main.css'
 
 import MyLayoutHeader from '../layouts/MyLayoutHeader';
-import TravisContext from "../demo/TravisContext";
+import TravisContext from "../contexts/TravisContext";
 
 function ImgEditContrast() {
     let navigate = useNavigate();
@@ -32,21 +31,27 @@ function ImgEditContrast() {
 
     return (<>
         <MyLayoutHeader>
-            <div className="d-flex flex-column align-items-center px-5" >
-                <span className='text-center fontSet-3 my-3'>調整對比度</span>
-                <div style={filterStyle} className="w-100 rounded-set-3 overflow-hidden mb-3">
-                    <img className="img-fluid" src={CroppedSrc || imageSrc} />
+            <div className=" d-flex flex-column align-items-center px-5" style={{ height: '585px' }} >
+                <span className='text-center text-s letterSpacing-2 mt-4 mb-3'>調整對比</span>
+
+                {/* 照片 */}
+                <div className="rounded-set-3 overflow-hidden" style={{ width: '270px' }} >
+                    <img style={filterStyle} className="img-fluid" src={CroppedSrc || imageSrc} />
                 </div>
 
                 {/* 拉桿 */}
-                <div className='w-100'>
-                    <input onChange={handleChange} className='w-100' type="range" min={50} max={150} value={contrast} />
+                <div className='w-100 px-4 mt-5 mb-2'>
+                    <input onChange={handleChange} className='form-range w-100' type="range" min={50} max={150} value={contrast} />
                 </div>
 
                 {/* save/ cancel */}
-                <div className="w-100 d-flex justify-content-between mt-4">
-                    <button className="btn btn-dark rounded-set-3" onClick={handleCancel}>取消修改</button>
-                    <button className="btn btn-dark rounded-set-3" onClick={handleSave}>儲存修改</button>
+                <div className="w-100 d-flex justify-content-between mt-4 px-3">
+                    <button onClick={handleCancel} className='btn'>
+                        <img src="src/assets/img/icon/Cancel.svg" width={'40px'} />
+                    </button>
+                    <button onClick={handleSave} className='btn'>
+                        <img src="src/assets/img/icon/Ok.svg"  width={'40px'}  />
+                    </button>
                 </div>
             </div>
         </MyLayoutHeader>

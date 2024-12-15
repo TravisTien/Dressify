@@ -1,19 +1,21 @@
-import React,{ useRef } from 'react'
+import React,{ useContext, useRef } from 'react'
 import '../css/CssReset.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../css/Main.css'
 
-function AddTagComment({ tagList, setTagList, setIsSliderVisible, selectID }) {
+import TravisContext from "../contexts/TravisContext";
+
+function AddTagComment({setIsSliderVisible, selectID }) {
+    const {tagList} = useContext(TravisContext)
     const typeRef = useRef(null);
     const sizeRef = useRef(null);
     const brandRef = useRef(null);
     const commentRef = useRef(null);
 
-    function handleCommit(){
+    function handleCommit(event){
         event.preventDefault()
-
-        // 把撈到的牌子 放入對應的 content
-        tagList[selectID].content = brandRef.current.value;
+        
+        tagList[selectID].content = brandRef.current.value; // 把撈到的牌子 放入對應的 content
         setIsSliderVisible(false);
     }
 

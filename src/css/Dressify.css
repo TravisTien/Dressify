@@ -1,3 +1,44 @@
-#header{
-    background-color: blueviolet;
+:root {
+  --color-base: #f9f8f4;
+  --color-second: #ebe3e0;
+  --color-highlight: #ae7a62;
+  --color-white: #ffffff;
+  --color-black: #3b3a38;
+}
+
+html {
+    font-size: 12px;
+}
+body {
+    min-width: 375px;
+}
+
+/* 調整字體大小 */
+.text-xs {
+    font-size: 12px;
+}
+.text-s {
+    font-size: 14px;
+}
+.text-m {
+    font-size: 16px;
+}
+.text-l {
+    font-size: 18px;
+}
+.text-xl {
+    font-size: 20px;
+}
+header {
+    height: 50px;
+}
+nav {
+    height: 55px;
+}
+
+.letterSpacing-1{
+    letter-spacing: 2px;
+}
+.letterSpacing-2{
+    letter-spacing: 10px;
 }
