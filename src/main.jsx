@@ -15,8 +15,6 @@ import AddTagComment from './pages/AddTagComment'
 import OutfitDescription from './pages/OutfitDescription'
 import Outfit from './pages/Outfit'
 import OutfitEdit from './pages/OutfitEdit'
-import MyFooter from './components/MyFooter.jsx'
-import MyNavigation from './components/MyNavigation.jsx'
 
 // Demo區
 import {TravisContextProvider} from './contexts/TravisContext.jsx'
@@ -27,10 +25,6 @@ import {
 } from "react-router-dom";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <MyNavigation />
-  },
   {
     path: "/Image",
     element: <TravisContextProvider><Image /></TravisContextProvider>
@@ -68,16 +62,16 @@ const router = createBrowserRouter([
     element: <TravisContextProvider><AddTagComment /></TravisContextProvider>
   },
   {
+    path: "/OutfitDescription",
+    element: <TravisContextProvider><OutfitDescription /></TravisContextProvider>
+  },
+  {
     path: "/Outfit",
     element: <Outfit />
   },
   {
     path: "/OutfitEdit",
     element: <OutfitEdit />
-  },
-  {
-    path: "/OutfitDescription",
-    element: <TravisContextProvider><OutfitDescription /></TravisContextProvider>
   },
 ]);
 

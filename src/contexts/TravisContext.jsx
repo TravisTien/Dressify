@@ -49,7 +49,10 @@ export const TravisContextProvider = (props) => {
             id: 0,
             content: '這是什麼服飾',
             x: 150,
-            y: 100
+            y: 100,
+            comment:'輸入註解',
+            type:'',
+            size:''
         }
     ]);
     // 穿搭場合

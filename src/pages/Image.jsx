@@ -36,9 +36,9 @@ function Image() {
                         <img className="img-fluid" src={CroppedSrc || imageSrc} />
                     </div>
 
-                    {/* 按鈕 */}
+                    {/* 編輯 */}
                     <button className="btn d-flex rounded-pill" style={{ backgroundColor: 'var(--color-highlight)', position: 'absolute', top: '1rem', left: '1rem', }} onClick={handleImgEdit}>
-                        <span className='text-m mx-1 letterSpacing-1' style={{ color: 'var(--color-white)' }}><img src="./src/assets/img/icon/pencil-W.svg" width="16px" className='pb-1 me-2' />編輯</span>
+                        <span className='text-m mx-1 letterSpacing-1' style={{ color: 'var(--color-white)' }}><img src="./src/assets/img/icon/pencil-white.svg" width="16px" className='pb-1 me-2' />編輯</span>
                     </button>
                 </div>
 
