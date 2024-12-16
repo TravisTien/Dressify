@@ -14,6 +14,7 @@ import TravisContext from "../contexts/TravisContext";
 
 
 function AddTag() {
+  let navigate = useNavigate();
   const { CroppedSrc, imageSrc, setTagList, tagList, filterStyle } = useContext(TravisContext)
   const [isSliderVisible, setIsSliderVisible] = useState(false);
   const [selectID, setSelectID] = useState('');
@@ -33,8 +34,9 @@ function AddTag() {
   }
   // 編輯標籤
   function handleTagEdit(event) {
-    // 選擇到的 id
     setSelectID((event.target.id))
+    // console.log(event.target.id);
+    
     setIsSliderVisible(true)
   }
   // 刪除標籤
@@ -56,7 +58,6 @@ function AddTag() {
   }
 
   // 頁面跳轉
-  let navigate = useNavigate();
   function handlePrev() {
     navigate(-1)
   }
@@ -65,7 +66,7 @@ function AddTag() {
   }
 
   return (<MyLayout>
-    <div className="d-flex flex-column px-5" style={{ height: '543px' }}>
+    <div className="d-flex flex-column px-5 position-relative" style={{ height: '543px' }}>
       <span className='text-center text-s letterSpacing-2 mt-4 mb-3'>穿搭照片</span>
 
       {/* 圖片 */}
@@ -92,7 +93,7 @@ function AddTag() {
                 <div className='text-center text-m' style={{ lineHeight: '30px', width: '130px', height: '30px', color: 'var(--color-black)', cursor: 'move'}} >{tagList[index].content}</div>
                 {/* 編輯 */}
                 <div className='position-absolute' onClick={handleTagEdit} style={{ top: -6, right: 6, width: '30px', height: '30px', transform: 'rotate(180deg)', cursor: 'pointer'}} id={id} >
-                  <img src="src/assets/img/icon/angle-left.svg" alt=""  width='15px'/>
+                  <img src="src/assets/img/icon/angle-left.svg" alt=""  width='15px' id={id}/>
                 </div>
               </div>
             </div>
